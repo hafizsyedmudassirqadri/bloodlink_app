@@ -117,6 +117,11 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                 prefixIcon: Icon(Icons.email_outlined,
                 size: screenW*0.06,
                 ),
+                hintText: "Email",
+                hintStyle: GoogleFonts.poppins(
+                  color: AppColors.lightThPrimaryTxt,
+                  fontSize: screenW*0.033,
+                ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.silverBorder.withValues(alpha: 0.5),
@@ -136,9 +141,15 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
             SizedBox(height: screenH * 0.02),
            TextField(
               decoration: InputDecoration(
+                hintText: "Password",
+                hintStyle: GoogleFonts.poppins(
+                  color: AppColors.lightThPrimaryTxt,
+                  fontSize: screenW*0.033,
+                ),
                 prefixIcon: Icon(Icons.lock_outline,
                 size: screenW*0.06,
                 ),
+                suffixIcon: Icon(Icons.visibility_off_outlined),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.silverBorder.withValues(alpha: 0.5),
