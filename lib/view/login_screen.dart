@@ -68,7 +68,7 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                 children: [
                   Expanded(
                     child: Container(
-                      height: screenH * 0.045,
+                      height: screenH * 0.050,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: const Color(0xFFD62339).withValues(alpha: 0.5),
@@ -98,7 +98,7 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                   SizedBox(width: screenW * 0.02),
                   Expanded(
                     child: Container(
-                      height: screenH * 0.045,
+                      height: screenH * 0.050,
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.silverBorder),
                         borderRadius: BorderRadius.circular(17.0),
@@ -284,7 +284,7 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                     children: [
                       Container(
                         height: screenH * 0.07,
-                        width: screenW * 0.25,
+                        width: screenW * 0.35,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.grey.withValues(alpha: 0.3),
@@ -293,6 +293,7 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                           borderRadius: BorderRadius.circular(25.0),
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image(
                               image: AssetImage("assets/Au&OnIcon/google.jfif"),
@@ -306,7 +307,7 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                       // SizedBox(height: screenW * 0.03),
                       Container(
                         height: screenH * 0.07,
-                        width: screenW * 0.25,
+                        width: screenW * 0.35,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.grey.withValues(alpha: 0.3),
@@ -315,6 +316,8 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                           borderRadius: BorderRadius.circular(25.0),
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
                             Image(
                               image: AssetImage("assets/Au&OnIcon/apple.png"),

@@ -68,7 +68,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                 children: [
                   Expanded(
                    child: Container(
-                      height: screenH * 0.045,
+                      height: screenH * 0.050,
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.silverBorder),
                         borderRadius: BorderRadius.circular(17.0),
@@ -102,7 +102,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   SizedBox(width: screenW * 0.02),
                   Expanded(
                     child: Container(
-                      height: screenH * 0.045,
+                      height: screenH * 0.050,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: const Color(0xFFD62339).withValues(alpha: 0.5),
@@ -229,6 +229,44 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                 ),
               ),
               SizedBox(height: screenH * 0.01),
+              TextField(
+                obscureText: isObscure,
+                decoration: InputDecoration(
+                  hintText: "Confirm Password",
+                  hintStyle: GoogleFonts.poppins(
+                    color: AppColors.lightThPrimaryTxt,
+                    fontSize: screenW * 0.033,
+                  ),
+                  prefixIcon: Icon(Icons.lock_outline, size: screenW * 0.06),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isObscure
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isObscure = !isObscure;
+                      });
+                    },
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.silverBorder.withValues(alpha: 0.5),
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.silverBorder,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+              ),
+              SizedBox(height: screenH * 0.01),
 
               // Remember Me & Forgot Password Row
               Row(
@@ -267,7 +305,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   ),
                 ],
               ),
-              SizedBox(height: screenH * 0.03),
+              SizedBox(height: screenH * 0.01),
 
               // Main Submit Button
               SizedBox(
@@ -291,7 +329,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   ),
                 ),
               ),
-              SizedBox(height: screenH * 0.08),
+              SizedBox(height: screenH * 0.03),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -310,9 +348,9 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                     children: [
-                     Container(
-                        height: screenH*0.07,
-                        width: screenW*0.25,
+                      Container(
+                        height: screenH * 0.07,
+                        width: screenW * 0.35,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.grey.withValues(alpha: 0.3),
@@ -321,6 +359,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                           borderRadius: BorderRadius.circular(25.0),
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image(
                               image: AssetImage("assets/Au&OnIcon/google.jfif"),
@@ -333,8 +372,8 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                       ),
                       // SizedBox(height: screenW * 0.03),
                       Container(
-                        height: screenH*0.07,
-                        width: screenW*0.25,
+                        height: screenH * 0.07,
+                        width: screenW * 0.35,
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.grey.withValues(alpha: 0.3),
@@ -343,6 +382,8 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                           borderRadius: BorderRadius.circular(25.0),
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
                             Image(
                               image: AssetImage("assets/Au&OnIcon/apple.png"),
