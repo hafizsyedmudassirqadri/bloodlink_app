@@ -1,3 +1,4 @@
+import 'package:bloodlink_app/view/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
         
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
+      debugShowCheckedModeBanner: false,
+      home: LoginScreenUi(),
     );
   }
 }
