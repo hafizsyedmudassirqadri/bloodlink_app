@@ -1,4 +1,5 @@
 import 'package:bloodlink_app/constants/app_colors.dart';
+import 'package:bloodlink_app/constants/app_media_query.dart';
 import 'package:bloodlink_app/view/forgot_screen.dart';
 import 'package:bloodlink_app/view/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,15 +18,14 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
 
   @override
   Widget build(BuildContext context) {
-    final screenH = MediaQuery.of(context).size.height;
-    final screenW = MediaQuery.of(context).size.width;
+    final media = AppMediaQuery.of(context);
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: screenW * 0.04,
-            vertical: screenH * 0.05,
+            horizontal: media.width * 0.04,
+            vertical: media.height * 0.05,
           ),
           child: Column(
             children: [
@@ -38,40 +38,40 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   children: [
                     Image(
                       image: const AssetImage("assets/Au&OnIcon/drop.png"),
-                      height: screenH * 0.07,
-                      width: screenH * 0.07,
+                      height: media.height * 0.07,
+                      width: media.height * 0.07,
                     ),
-                    SizedBox(height: screenH * 0.009),
+                    SizedBox(height: media.height * 0.009),
                     Text(
                       "Create Account",
                       style: GoogleFonts.poppins(
-                        fontSize: screenW * 0.045,
+                        fontSize: media.width * 0.045,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.lightThPrimaryTxt,
+                        color: AppColors.black,
                       ),
                     ),
-                    SizedBox(height: screenH * 0.009),
+                    SizedBox(height: media.height * 0.009),
                     Text(
                       "Join BloodLink and be a part of a life-saving community.",
                       style: GoogleFonts.poppins(
-                        fontSize: screenW * 0.030,
+                        fontSize: media.width * 0.030,
                         fontWeight: FontWeight.w500,
-                        color: AppColors.lightThPrimaryTxt,
+                        color: AppColors.black,
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: screenH * 0.02),
+              SizedBox(height: media.height * 0.02),
 
               // Toggle Buttons (Login / Sign Up)
               Row(
                 children: [
                   Expanded(
                     child: Container(
-                      height: screenH * 0.050,
+                      height: media.height * 0.050,
                       decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.silverBorder),
+                        border: Border.all(color: AppColors.silver),
                         borderRadius: BorderRadius.circular(17.0),
                       ),
                       child: ElevatedButton(
@@ -92,18 +92,18 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                         child: Text(
                           "Log in",
                           style: GoogleFonts.poppins(
-                            fontSize: screenW * 0.032,
+                            fontSize: media.width * 0.032,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.lightThPrimaryTxt,
+                            color: AppColors.black,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: screenW * 0.02),
+                  SizedBox(width: media.width * 0.02),
                   Expanded(
                     child: Container(
-                      height: screenH * 0.050,
+                      height: media.height * 0.050,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: const Color(0xFFD62339).withValues(alpha: 0.5),
@@ -122,9 +122,9 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                         child: Text(
                           "Sign Up",
                           style: GoogleFonts.poppins(
-                            fontSize: screenW * 0.032,
+                            fontSize: media.width * 0.032,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.darkThPrimaryTxt,
+                            color: AppColors.white,
                           ),
                         ),
                       ),
@@ -132,64 +132,61 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   ),
                 ],
               ),
-              SizedBox(height: screenH * 0.03),
+              SizedBox(height: media.height * 0.03),
 
               TextField(
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person, size: screenW * 0.06),
+                  prefixIcon: Icon(Icons.person, size: media.width * 0.06),
                   hintText: "Full Name",
                   hintStyle: GoogleFonts.poppins(
-                    color: AppColors.lightThPrimaryTxt,
-                    fontSize: screenW * 0.033,
+                    color: AppColors.black,
+                    fontSize: media.width * 0.033,
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: AppColors.silverBorder.withValues(alpha: 0.5),
+                      color: AppColors.silver.withValues(alpha: 0.5),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.silverBorder,
-                      width: 2.0,
-                    ),
+                    borderSide: BorderSide(color: AppColors.silver, width: 2.0),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
               ),
-              SizedBox(height: screenH * 0.014),
+              SizedBox(height: media.height * 0.014),
 
               // Email TextField
               TextField(
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email_outlined, size: screenW * 0.06),
+                  prefixIcon: Icon(
+                    Icons.email_outlined,
+                    size: media.width * 0.06,
+                  ),
                   hintText: "Email",
                   hintStyle: GoogleFonts.poppins(
-                    color: AppColors.lightThPrimaryTxt,
-                    fontSize: screenW * 0.033,
+                    color: AppColors.black,
+                    fontSize: media.width * 0.033,
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: AppColors.silverBorder.withValues(alpha: 0.5),
+                      color: AppColors.silver.withValues(alpha: 0.5),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.silverBorder,
-                      width: 2.0,
-                    ),
+                    borderSide: BorderSide(color: AppColors.silver, width: 2.0),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
               ),
-              SizedBox(height: screenH * 0.02),
+              SizedBox(height: media.height * 0.02),
 
               // Password TextField
               TextField(
@@ -197,10 +194,13 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                 decoration: InputDecoration(
                   hintText: "Password",
                   hintStyle: GoogleFonts.poppins(
-                    color: AppColors.lightThPrimaryTxt,
-                    fontSize: screenW * 0.033,
+                    color: AppColors.black,
+                    fontSize: media.width * 0.033,
                   ),
-                  prefixIcon: Icon(Icons.lock_outline, size: screenW * 0.06),
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    size: media.width * 0.06,
+                  ),
                   suffixIcon: IconButton(
                     icon: Icon(
                       isObscure
@@ -215,30 +215,30 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: AppColors.silverBorder.withValues(alpha: 0.5),
+                      color: AppColors.silver.withValues(alpha: 0.5),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.silverBorder,
-                      width: 2.0,
-                    ),
+                    borderSide: BorderSide(color: AppColors.silver, width: 2.0),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
               ),
-              SizedBox(height: screenH * 0.01),
+              SizedBox(height: media.height * 0.01),
               TextField(
                 obscureText: isObscure,
                 decoration: InputDecoration(
                   hintText: "Confirm Password",
                   hintStyle: GoogleFonts.poppins(
-                    color: AppColors.lightThPrimaryTxt,
-                    fontSize: screenW * 0.033,
+                    color: AppColors.black,
+                    fontSize: media.width * 0.033,
                   ),
-                  prefixIcon: Icon(Icons.lock_outline, size: screenW * 0.06),
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    size: media.width * 0.06,
+                  ),
                   suffixIcon: IconButton(
                     icon: Icon(
                       isObscure
@@ -253,21 +253,18 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: AppColors.silverBorder.withValues(alpha: 0.5),
+                      color: AppColors.silver.withValues(alpha: 0.5),
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.silverBorder,
-                      width: 2.0,
-                    ),
+                    borderSide: BorderSide(color: AppColors.silver, width: 2.0),
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
               ),
-              SizedBox(height: screenH * 0.01),
+              SizedBox(height: media.height * 0.01),
 
               // Remember Me & Forgot Password Row
               Row(
@@ -288,8 +285,8 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                       Text(
                         "Remember me",
                         style: GoogleFonts.poppins(
-                          fontSize: screenW * 0.030,
-                          color: AppColors.lightThPrimaryTxt,
+                          fontSize: media.width * 0.030,
+                          color: AppColors.black,
                         ),
                       ),
                     ],
@@ -305,7 +302,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                     child: Text(
                       "Forgot Password?",
                       style: GoogleFonts.poppins(
-                        fontSize: screenW * 0.030,
+                        fontSize: media.width * 0.030,
                         fontWeight: FontWeight.w500,
                         color: const Color(0xFFD62339),
                       ),
@@ -313,12 +310,12 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   ),
                 ],
               ),
-              SizedBox(height: screenH * 0.01),
+              SizedBox(height: media.height * 0.01),
 
               // Main Submit Button
               SizedBox(
                 width: double.infinity,
-                height: screenH * 0.055,
+                height: media.height * 0.055,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFD62339),
@@ -330,14 +327,14 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   child: Text(
                     "Create an account",
                     style: GoogleFonts.poppins(
-                      fontSize: screenW * 0.038,
+                      fontSize: media.width * 0.038,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.darkThPrimaryTxt,
+                      color: AppColors.white,
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: screenH * 0.03),
+              SizedBox(height: media.height * 0.03),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -345,12 +342,12 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   Text(
                     "Or continue with",
                     style: GoogleFonts.poppins(
-                      fontSize: screenW * 0.038,
+                      fontSize: media.width * 0.038,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.lightThPrimaryTxt,
+                      color: AppColors.black,
                     ),
                   ),
-                  SizedBox(height: screenH * 0.02),
+                  SizedBox(height: media.height * 0.02),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -358,8 +355,8 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: screenH * 0.07,
-                          width: screenW * 0.35,
+                          height: media.height * 0.07,
+                          width: media.width * 0.35,
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Colors.grey.withValues(alpha: 0.3),
@@ -374,19 +371,19 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                                 image: AssetImage(
                                   "assets/Au&OnIcon/google.png",
                                 ),
-                                height: screenH * 0.13,
-                                width: screenW * 0.13,
+                                height: media.height * 0.13,
+                                width: media.width * 0.13,
                               ),
                               Text("Google"),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(width: screenW * 0.03),
+                      SizedBox(width: media.width * 0.03),
                       Expanded(
                         child: Container(
-                          height: screenH * 0.07,
-                          width: screenW * 0.35,
+                          height: media.height * 0.07,
+                          width: media.width * 0.35,
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Colors.grey.withValues(alpha: 0.3),
@@ -400,8 +397,8 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                             children: [
                               Image(
                                 image: AssetImage("assets/Au&OnIcon/apple.png"),
-                                height: screenH * 0.13,
-                                width: screenW * 0.13,
+                                height: media.height * 0.13,
+                                width: media.width * 0.13,
                               ),
                               Text("Apple"),
                             ],
