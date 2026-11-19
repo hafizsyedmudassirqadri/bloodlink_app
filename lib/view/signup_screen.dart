@@ -1,4 +1,5 @@
 import 'package:bloodlink_app/constants/app_colors.dart';
+import 'package:bloodlink_app/view/forgot_screen.dart';
 import 'package:bloodlink_app/view/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,9 +41,9 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                       height: screenH * 0.07,
                       width: screenH * 0.07,
                     ),
-                    SizedBox(height: screenH * 0.010),
+                    SizedBox(height: screenH * 0.009),
                     Text(
-                      "BloodLink",
+                      "Create Account",
                       style: GoogleFonts.poppins(
                         fontSize: screenW * 0.045,
                         fontWeight: FontWeight.bold,
@@ -51,7 +52,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                     ),
                     SizedBox(height: screenH * 0.009),
                     Text(
-                      "Connecting Donors, Saving Lives.",
+                      "Join BloodLink and be a part of a life-saving community.",
                       style: GoogleFonts.poppins(
                         fontSize: screenW * 0.030,
                         fontWeight: FontWeight.w500,
@@ -67,7 +68,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
               Row(
                 children: [
                   Expanded(
-                   child: Container(
+                    child: Container(
                       height: screenH * 0.050,
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.silverBorder),
@@ -275,6 +276,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   Row(
                     children: [
                       Checkbox(
+                        shape: CircleBorder(),
                         value: isChecked,
                         activeColor: const Color(0xFFD62339),
                         onChanged: (bool? newValue) {
@@ -293,7 +295,13 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      var route = MaterialPageRoute(
+                        builder: (context) => ForgotScreenUi(),
+                      );
+
+                      Navigator.push(context, route);
+                    },
                     child: Text(
                       "Forgot Password?",
                       style: GoogleFonts.poppins(
@@ -320,7 +328,7 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                   ),
                   onPressed: () {},
                   child: Text(
-                    "Login",
+                    "Create an account",
                     style: GoogleFonts.poppins(
                       fontSize: screenW * 0.038,
                       fontWeight: FontWeight.w600,
@@ -348,50 +356,56 @@ class _SignupScreenUiState extends State<SignupScreenUi> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                     children: [
-                      Container(
-                        height: screenH * 0.07,
-                        width: screenW * 0.35,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.withValues(alpha: 0.3),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image(
-                              image: AssetImage("assets/Au&OnIcon/google.jfif"),
-                              height: screenH * 0.08,
-                              width: screenW * 0.08,
+                      Expanded(
+                        child: Container(
+                          height: screenH * 0.07,
+                          width: screenW * 0.35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey.withValues(alpha: 0.3),
+                              width: 2,
                             ),
-                            Text("Google"),
-                          ],
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                  "assets/Au&OnIcon/google.png",
+                                ),
+                                height: screenH * 0.13,
+                                width: screenW * 0.13,
+                              ),
+                              Text("Google"),
+                            ],
+                          ),
                         ),
                       ),
-                      // SizedBox(height: screenW * 0.03),
-                      Container(
-                        height: screenH * 0.07,
-                        width: screenW * 0.35,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.withValues(alpha: 0.3),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-
-                          children: [
-                            Image(
-                              image: AssetImage("assets/Au&OnIcon/apple.png"),
-                              height: screenH * 0.08,
-                              width: screenW * 0.08,
+                      SizedBox(width: screenW * 0.03),
+                      Expanded(
+                        child: Container(
+                          height: screenH * 0.07,
+                          width: screenW * 0.35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey.withValues(alpha: 0.3),
+                              width: 2,
                             ),
-                            Text("Apple"),
-                          ],
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+
+                            children: [
+                              Image(
+                                image: AssetImage("assets/Au&OnIcon/apple.png"),
+                                height: screenH * 0.13,
+                                width: screenW * 0.13,
+                              ),
+                              Text("Apple"),
+                            ],
+                          ),
                         ),
                       ),
                     ],

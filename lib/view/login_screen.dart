@@ -1,4 +1,5 @@
 import 'package:bloodlink_app/constants/app_colors.dart';
+import 'package:bloodlink_app/view/forgot_screen.dart';
 import 'package:bloodlink_app/view/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +41,7 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                       height: screenH * 0.07,
                       width: screenH * 0.07,
                     ),
-                    SizedBox(height: screenH * 0.010),
+                    SizedBox(height: screenH * 0.009),
                     Text(
                       "BloodLink",
                       style: GoogleFonts.poppins(
@@ -209,6 +210,7 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                   Row(
                     children: [
                       Checkbox(
+                        shape: CircleBorder(),
                         value: isChecked,
                         activeColor: const Color(0xFFD62339),
                         onChanged: (bool? newValue) {
@@ -227,7 +229,12 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      var route = MaterialPageRoute(
+                        builder: (context) => ForgotScreenUi(),
+                      );
+                      Navigator.push(context, route);
+                    },
                     child: Text(
                       "Forgot Password?",
                       style: GoogleFonts.poppins(
@@ -240,7 +247,6 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                 ],
               ),
               SizedBox(height: screenH * 0.03),
-
               // Main Submit Button
               SizedBox(
                 width: double.infinity,
@@ -282,50 +288,56 @@ class _LoginScreenUiState extends State<LoginScreenUi> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                     children: [
-                      Container(
-                        height: screenH * 0.07,
-                        width: screenW * 0.35,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.withValues(alpha: 0.3),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image(
-                              image: AssetImage("assets/Au&OnIcon/google.jfif"),
-                              height: screenH * 0.08,
-                              width: screenW * 0.08,
+                      Expanded(
+                        child: Container(
+                          height: screenH * 0.07,
+                          width: screenW * 0.35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey.withValues(alpha: 0.3),
+                              width: 2,
                             ),
-                            Text("Google"),
-                          ],
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                  "assets/Au&OnIcon/google.png",
+                                ),
+                                height: screenH * 0.13,
+                                width: screenW * 0.13,
+                              ),
+                              Text("Google"),
+                            ],
+                          ),
                         ),
                       ),
-                      // SizedBox(height: screenW * 0.03),
-                      Container(
-                        height: screenH * 0.07,
-                        width: screenW * 0.35,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.withValues(alpha: 0.3),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(25.0),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-
-                          children: [
-                            Image(
-                              image: AssetImage("assets/Au&OnIcon/apple.png"),
-                              height: screenH * 0.08,
-                              width: screenW * 0.08,
+                      SizedBox(width: screenW * 0.03),
+                      Expanded(
+                        child: Container(
+                          height: screenH * 0.07,
+                          width: screenW * 0.35,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey.withValues(alpha: 0.3),
+                              width: 2,
                             ),
-                            Text("Apple"),
-                          ],
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+
+                            children: [
+                              Image(
+                                image: AssetImage("assets/Au&OnIcon/apple.png"),
+                                height: screenH * 0.13,
+                                width: screenW * 0.13,
+                              ),
+                              Text("Apple"),
+                            ],
+                          ),
                         ),
                       ),
                     ],
