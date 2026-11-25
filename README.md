@@ -1,4 +1,4 @@
-# bloodlink_app
+# bloodlink
 
 A new Flutter project.
 

@@ -1,25 +1,36 @@
-import 'package:bloodlink_app/view/login_screen.dart';
+import 'package:bloodlink/view/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'app/app_theme.dart';
+import 'controllers/theme_controller.dart';
 
 void main() {
-  runApp(const MyApp());
+  Get.put(ThemeController(), permanent: true);
+  runApp(const BloodLinkApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class BloodLinkApp extends StatelessWidget {
+  const BloodLinkApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+    return MediaQuery.fromView(
+      view: WidgetsBinding.instance.platformDispatcher.views.first,
+      child: Builder(
+        builder: (context) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'BloodLink',
+            theme: AppTheme.lightTheme(context),
+            darkTheme: AppTheme.darkTheme(context),
+            themeMode: ThemeMode.light,
+            home: SplashScreen(),
+          );
+        },
       ),
-      debugShowCheckedModeBanner: false,
-      home: LoginScreenUi(),
     );
   }
 }
+
 

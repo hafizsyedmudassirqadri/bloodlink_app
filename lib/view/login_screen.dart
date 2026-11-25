@@ -1,358 +1,316 @@
-import 'package:bloodlink_app/constants/app_colors.dart';
-import 'package:bloodlink_app/constants/app_media_query.dart';
-import 'package:bloodlink_app/view/forgot_screen.dart';
-import 'package:bloodlink_app/view/role_selection.dart';
-import 'package:bloodlink_app/view/signup_screen.dart';
+import 'package:bloodlink/core/responsive.dart';
+import 'package:bloodlink/view/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
-class LoginScreenUi extends StatefulWidget {
-  const LoginScreenUi({super.key});
+import '../widgets/auth_tabs.dart';
 
-  @override
-  State<LoginScreenUi> createState() => _LoginScreenUiState();
-}
+import '../controllers/login_controller.dart';
+import '../widgets/theme_toggle.dart';
 
-class _LoginScreenUiState extends State<LoginScreenUi> {
-  bool isChecked = false;
-  bool isObscure = true;
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
-    final media = AppMediaQuery.of(context);
-
+    final theme = Theme.of(context);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: media.width * 0.04,
-            vertical: media.height * 0.05,
-          ),
-          child: Column(
-            children: [
-              // Logo and Tagline Section
-              SizedBox(
-                width: double.infinity,
+      backgroundColor: theme.scaffoldBackgroundColor,
+
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: Responsive.w(context, 22),
+                  vertical: Responsive.h(context, 40),
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image(
-                      image: const AssetImage("assets/Au&OnIcon/drop.png"),
-                      height: media.height * 0.07,
-                      width: media.height * 0.07,
+                    // 1. BloodLink drop logo
+                    Image.asset(
+                      'assets/auth/drop.png',
+                      height: Responsive.h(context, 58),
+                      width: Responsive.w(context, 48),
                     ),
-                    SizedBox(height: media.height * 0.009),
-                    Text(
-                      "BloodLink",
-                      style: GoogleFonts.poppins(
-                        fontSize: media.width * 0.045,
+                    SizedBox(height: Responsive.h(context, 8)),
+
+                    // 2. BloodLink Heading
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Blood",
+                            style: TextStyle(
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Link",
+                            style: TextStyle(color: theme.colorScheme.primary),
+                          ),
+                        ],
+                      ),
+
+                      style: theme.textTheme.headlineLarge?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: AppColors.black,
+                        fontSize: Responsive.sp(context, 24),
                       ),
                     ),
-                    SizedBox(height: media.height * 0.009),
+                    SizedBox(height: Responsive.h(context, 4)),
+                    // 3. Tagline
                     Text(
-                      "Connecting Donors, Saving Lives.",
-                      style: GoogleFonts.poppins(
-                        fontSize: media.width * 0.030,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.black,
+                      'Connecting Donors, Saving Lives.',
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.bodySmall,
+                    ),
+
+                    SizedBox(height: Responsive.h(context, 30)),
+
+                    AuthTabs(
+                      isSignUp: false,
+
+                      onLogin: () {},
+
+                      onSignUp: () {
+                        Get.off(() => SignupScreen());
+                      },
+                    ),
+
+                    SizedBox(height: Responsive.h(context, 30)),
+
+                    TextField(
+                      controller: controller.emailController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.emailAddress,
+
+                      style: theme.textTheme.bodyMedium,
+                      decoration: InputDecoration(
+                        hintText: 'Email or Phone Number',
+                        hintStyle: theme.textTheme.bodyMedium,
+                        prefixIcon: Icon(
+                          Icons.email_outlined,
+                          size: Responsive.sp(context, 20),
+                          color: theme.colorScheme.onSurface,
+                        ),
+                        filled: true,
+                        fillColor: theme.colorScheme.surface,
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: Responsive.h(context, 14),
+                          horizontal: Responsive.w(context, 12),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                            Responsive.w(context, 10),
+                          ),
+
+                          borderSide: BorderSide(
+                            color: theme.dividerColor,
+                            width: Responsive.w(context, 1),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                            Responsive.w(context, 10),
+                          ),
+
+                          borderSide: BorderSide(
+                            color: theme.colorScheme.primary,
+                            width: Responsive.w(context, 1.5),
+                          ),
+                        ),
                       ),
+                    ),
+                    SizedBox(height: Responsive.h(context, 14)),
+
+                    Obx(
+                      () => TextField(
+                        controller: controller.passController,
+                        obscureText: controller.isPasswordHidden.value,
+                        keyboardType: TextInputType.visiblePassword,
+                        style: theme.textTheme.bodyMedium,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: controller.togglePasswordVisibility,
+                            icon: Icon(
+                              controller.isPasswordHidden.value
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                            ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock_outline,
+                            size: Responsive.w(context, 20),
+                            color: theme.colorScheme.onSurface,
+                          ),
+                          filled: true,
+                          fillColor: theme.colorScheme.surface,
+                          hintText: "Password",
+                          hintStyle: theme.textTheme.bodyMedium,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              Responsive.w(context, 10),
+                            ),
+
+                            borderSide: BorderSide(
+                              color: theme.dividerColor,
+                              width: Responsive.w(context, 1),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              Responsive.w(context, 10),
+                            ),
+
+                            borderSide: BorderSide(
+                              color: theme.colorScheme.primary,
+                              width: Responsive.w(context, 1.5),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: Responsive.h(context, 14)),
+                    Obx(() {
+                      return Row(
+                        children: [
+                          SizedBox(
+                            height: Responsive.h(context, 24),
+                            width: Responsive.w(context, 24),
+                            child: Checkbox(
+                              value: controller.remember.value,
+                              onChanged: controller.toggleRememberMe,
+                              activeColor: theme.colorScheme.primary,
+                              side: BorderSide(color: theme.dividerColor),
+                              visualDensity: VisualDensity.compact,
+                            ),
+                          ),
+                          SizedBox(width: Responsive.w(context, 6)),
+                          Text("Remember me", style: theme.textTheme.bodySmall),
+
+                          const Spacer(),
+
+                          TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            child: Text(
+                              'Forgot Password?',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
+
+                    SizedBox(height: Responsive.h(context, 32)),
+
+                    SizedBox(
+                      width: double.infinity,
+                      height: Responsive.h(context, 44),
+
+                      child: ElevatedButton(
+                        onPressed: controller.login,
+
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: theme.colorScheme.primary,
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              Responsive.w(context, 10),
+                            ),
+                          ),
+                        ),
+
+                        child: Text(
+                          'Login',
+
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: Responsive.h(context, 28)),
+
+                    Text(
+                      'Or continue with',
+
+                      textAlign: TextAlign.center,
+
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                    SizedBox(height: Responsive.h(context, 28)),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/auth/google.png',
+                                  width: Responsive.w(context, 38),
+                                  height: Responsive.w(context, 38),
+                                ),
+                                SizedBox(width: Responsive.w(context, 8)),
+                                Text(
+                                  'Google',
+                                  style: theme.textTheme.bodySmall,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: Responsive.w(context, 10)),
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/auth/apple.png',
+                                  width: Responsive.w(context, 38),
+                                  height: Responsive.w(context, 38),
+                                ),
+                                SizedBox(width: Responsive.w(context, 8)),
+                                Text('Apple', style: theme.textTheme.bodySmall),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: media.height * 0.02),
+            ),
 
-              // Toggle Buttons (Login / Sign Up)
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: media.height * 0.050,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color(0xFFD62339).withValues(alpha: 0.5),
-                        ),
-                        borderRadius: BorderRadius.circular(19.0),
-                      ),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFD62339),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(19.0),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "Login",
-                          style: GoogleFonts.poppins(
-                            fontSize: media.width * 0.032,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: media.width * 0.02),
-                  Expanded(
-                    child: Container(
-                      height: media.height * 0.050,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.silver),
-                        borderRadius: BorderRadius.circular(17.0),
-                      ),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFF8FAFC),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(17.0),
-                          ),
-                        ),
-                        onPressed: () {
-                          var route = MaterialPageRoute(
-                            builder: (context) => SignupScreenUi(),
-                          );
-
-                          Navigator.push(context, route);
-                        },
-                        child: Text(
-                          "Sign Up",
-                          style: GoogleFonts.poppins(
-                            fontSize: media.width * 0.032,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: media.height * 0.03),
-
-              // Email TextField
-              TextField(
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.email_outlined,
-                    size: media.width * 0.06,
-                  ),
-                  hintText: "Email",
-                  hintStyle: GoogleFonts.poppins(
-                    color: AppColors.black,
-                    fontSize: media.width * 0.033,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.silver.withValues(alpha: 0.5),
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.silver, width: 2.0),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                ),
-              ),
-              SizedBox(height: media.height * 0.02),
-
-              // Password TextField
-              TextField(
-                obscureText: isObscure,
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  hintStyle: GoogleFonts.poppins(
-                    color: AppColors.black,
-                    fontSize: media.width * 0.033,
-                  ),
-                  prefixIcon: Icon(
-                    Icons.lock_outline,
-                    size: media.width * 0.06,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      isObscure
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isObscure = !isObscure;
-                      });
-                    },
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: AppColors.silver.withValues(alpha: 0.5),
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.silver, width: 2.0),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                ),
-              ),
-              SizedBox(height: media.height * 0.01),
-
-              // Remember Me & Forgot Password Row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Checkbox(
-                        shape: CircleBorder(),
-                        value: isChecked,
-                        activeColor: const Color(0xFFD62339),
-                        onChanged: (bool? newValue) {
-                          setState(() {
-                            isChecked = newValue ?? false;
-                          });
-                        },
-                      ),
-                      Text(
-                        "Remember me",
-                        style: GoogleFonts.poppins(
-                          fontSize: media.width * 0.030,
-                          color: AppColors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      var route = MaterialPageRoute(
-                        builder: (context) => ForgotScreenUi(),
-                      );
-                      Navigator.push(context, route);
-                    },
-                    child: Text(
-                      "Forgot Password?",
-                      style: GoogleFonts.poppins(
-                        fontSize: media.width * 0.030,
-                        fontWeight: FontWeight.w500,
-                        color: const Color(0xFFD62339),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: media.height * 0.03),
-              // Main Submit Button
-              SizedBox(
-                width: double.infinity,
-                height: media.height * 0.055,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFD62339),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
-                  onPressed: () {
-                    var route = MaterialPageRoute(
-                      builder: (context) => RoleSelectionUi(),
-                    );
-
-                    Navigator.push(context, route);
-                  },
-                  child: Text(
-                    "Login",
-                    style: GoogleFonts.poppins(
-                      fontSize: media.width * 0.038,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.white,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: media.height * 0.08),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Or continue with",
-                    style: GoogleFonts.poppins(
-                      fontSize: media.width * 0.038,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black,
-                    ),
-                  ),
-                  SizedBox(height: media.height * 0.02),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: media.height * 0.07,
-                          width: media.width * 0.35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey.withValues(alpha: 0.3),
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image(
-                                image: AssetImage(
-                                  "assets/Au&OnIcon/google.png",
-                                ),
-                                height: media.height * 0.13,
-                                width: media.width * 0.13,
-                              ),
-                              Text("Google"),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: media.width * 0.03),
-                      Expanded(
-                        child: Container(
-                          height: media.height * 0.07,
-                          width: media.width * 0.35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey.withValues(alpha: 0.3),
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-
-                            children: [
-                              Image(
-                                image: AssetImage("assets/Au&OnIcon/apple.png"),
-                                height: media.height * 0.13,
-                                width: media.width * 0.13,
-                              ),
-                              Text("Apple"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+            Positioned(
+              top: Responsive.h(context, 8),
+              right: Responsive.w(context, 16),
+              child: const ThemeToggle(),
+            ),
+          ],
         ),
       ),
     );
