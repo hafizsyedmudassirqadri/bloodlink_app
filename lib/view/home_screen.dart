@@ -1,6 +1,7 @@
 import 'package:bloodlink/constants/app_colors.dart';
 import 'package:bloodlink/controllers/home_controller.dart';
 import 'package:bloodlink/core/responsive.dart';
+import 'package:bloodlink/view/donation_cycle_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -198,7 +199,9 @@ class HomeScreen extends StatelessWidget {
                     context,
                     'Donation\nCycle',
                     'assets/home screen/clock.png',
-                    () => controller.comingSoon('Donation Cycle'),
+                    () {
+                      Get.to(() => DonationCycleScreen());
+                    },
                   ),
 
                   SizedBox(width: Responsive.w(context, 8)),

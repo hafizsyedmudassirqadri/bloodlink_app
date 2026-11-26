@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
 
@@ -259,42 +260,117 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(height: Responsive.h(context, 28)),
 
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Google button
                         Expanded(
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/auth/google.png',
-                                  width: Responsive.w(context, 38),
-                                  height: Responsive.w(context, 38),
-                                ),
-                                SizedBox(width: Responsive.w(context, 8)),
-                                Text(
+                          child: SizedBox(
+                            height: Responsive.h(context, 42),
+
+                            child: OutlinedButton(
+                              onPressed: () {
+                                Get.snackbar(
                                   'Google',
-                                  style: theme.textTheme.bodySmall,
+                                  'Google Sign-In will be added later.',
+                                );
+                              },
+
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(color: theme.dividerColor),
+
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: Responsive.w(context, 8),
                                 ),
-                              ],
+
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    Responsive.w(context, 17),
+                                  ),
+                                ),
+                              ),
+
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+
+                                children: [
+                                  Image.asset(
+                                    'assets/auth/google.png',
+                                    width: Responsive.w(context, 30),
+                                    height: Responsive.h(context, 30),
+                                    fit: BoxFit.contain,
+                                  ),
+
+                                  SizedBox(width: Responsive.w(context, 6)),
+
+                                  Flexible(
+                                    child: Text(
+                                      'Google',
+                                      style: theme.textTheme.bodyMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                        SizedBox(width: Responsive.w(context, 10)),
+
+                        SizedBox(width: Responsive.w(context, 5)),
+
+                        // Apple button
                         Expanded(
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/auth/apple.png',
-                                  width: Responsive.w(context, 38),
-                                  height: Responsive.w(context, 38),
+                          child: SizedBox(
+                            height: Responsive.h(context, 42),
+
+                            child: OutlinedButton(
+                              onPressed: () {
+                                Get.snackbar(
+                                  'Apple',
+                                  'Apple Sign-In will be added later.',
+                                );
+                              },
+
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(color: theme.dividerColor),
+
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: Responsive.w(context, 8),
                                 ),
-                                SizedBox(width: Responsive.w(context, 8)),
-                                Text('Apple', style: theme.textTheme.bodySmall),
-                              ],
+
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    Responsive.w(context, 17),
+                                  ),
+                                ),
+                              ),
+
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+
+                                children: [
+                                  Image.asset(
+                                    'assets/auth/apple.png',
+                                    width: Responsive.w(context, 30),
+                                    height: Responsive.h(context, 30),
+                                    fit: BoxFit.contain,
+                                    color: isDark ? Colors.white : null,
+                                  ),
+
+                                  SizedBox(width: Responsive.w(context, 6)),
+
+                                  Flexible(
+                                    child: Text(
+                                      'Apple',
+                                      style: theme.textTheme.bodyMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -63,61 +63,60 @@ class DonationCycleScreen extends StatelessWidget {
 
                             children: [
                               CircularProgressIndicator(
-                                value: 1.0,
+                                value: 0.38,
+                                backgroundColor: theme.colorScheme.onSurface
+                                    .withValues(alpha: 0.12),
                                 strokeWidth: Responsive.w(context, 20),
-                                color: theme.colorScheme.onSurface.withValues(
-                                  alpha: 0.12,
-                                ),
+                                color: AppColors.success,
                               ),
 
-                              // Top
-                              Transform.rotate(
-                                angle: baseAngle,
-                                child: CircularProgressIndicator(
-                                  value: 0.12,
-                                  strokeWidth: Responsive.w(context, 20),
-                                  strokeCap: StrokeCap.round,
-                                  color: AppColors.success,
-                                  backgroundColor: Colors.transparent,
-                                ),
-                              ),
+                              // // Top
+                              // Transform.rotate(
+                              //   angle: baseAngle,
+                              //   child: CircularProgressIndicator(
+                              //     value: 0.12,
+                              //     strokeWidth: Responsive.w(context, 20),
+                              //     strokeCap: StrokeCap.round,
+                              //     color: AppColors.success,
+                              //     backgroundColor: Colors.transparent,
+                              //   ),
+                              // ),
 
-                              // Right
-                              Transform.rotate(
-                                angle: baseAngle + math.pi / 2,
-                                child: CircularProgressIndicator(
-                                  value: 0.12,
-                                  strokeWidth: Responsive.w(context, 20),
-                                  strokeCap: StrokeCap.round,
-                                  color: AppColors.success,
-                                  backgroundColor: Colors.transparent,
-                                ),
-                              ),
+                              // // Right
+                              // Transform.rotate(
+                              //   angle: baseAngle + math.pi / 2,
+                              //   child: CircularProgressIndicator(
+                              //     value: 0.12,
+                              //     strokeWidth: Responsive.w(context, 20),
+                              //     strokeCap: StrokeCap.round,
+                              //     color: AppColors.success,
+                              //     backgroundColor: Colors.transparent,
+                              //   ),
+                              // ),
 
-                              // Bottom
-                              Transform.rotate(
-                                angle: baseAngle + math.pi,
-                                child: CircularProgressIndicator(
-                                  value: 0.12,
-                                  strokeWidth: Responsive.w(context, 20),
-                                  strokeCap: StrokeCap.round,
-                                  color: AppColors.success,
-                                  backgroundColor: Colors.transparent,
-                                ),
-                              ),
+                              // // Bottom
+                              // Transform.rotate(
+                              //   angle: baseAngle + math.pi,
+                              //   child: CircularProgressIndicator(
+                              //     value: 0.12,
+                              //     strokeWidth: Responsive.w(context, 20),
+                              //     strokeCap: StrokeCap.round,
+                              //     color: AppColors.success,
+                              //     backgroundColor: Colors.transparent,
+                              //   ),
+                              // ),
 
-                              // Left
-                              Transform.rotate(
-                                angle: baseAngle + 3 * math.pi / 2,
-                                child: CircularProgressIndicator(
-                                  value: 0.12,
-                                  strokeWidth: Responsive.w(context, 20),
-                                  strokeCap: StrokeCap.round,
-                                  color: AppColors.success,
-                                  backgroundColor: Colors.transparent,
-                                ),
-                              ),
-
+                              // // Left
+                              // Transform.rotate(
+                              //   angle: baseAngle + 3 * math.pi / 2,
+                              //   child: CircularProgressIndicator(
+                              //     value: 0.12,
+                              //     strokeWidth: Responsive.w(context, 20),
+                              //     strokeCap: StrokeCap.round,
+                              //     color: AppColors.success,
+                              //     backgroundColor: Colors.transparent,
+                              //   ),
+                              // ),
                               Center(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -298,7 +297,7 @@ class DonationCycleScreen extends StatelessWidget {
 
                                 Expanded(
                                   child: Text(
-                                    "Icons.access_time",
+                                    "Cycle Progress",
                                     style: theme.textTheme.bodyMedium?.copyWith(
                                       fontSize: Responsive.sp(context, 16),
                                     ),

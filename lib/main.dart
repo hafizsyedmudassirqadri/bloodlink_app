@@ -26,8 +26,8 @@ class BloodLinkApp extends StatelessWidget {
             theme: AppTheme.lightTheme(context),
             darkTheme: AppTheme.darkTheme(context),
             themeMode: ThemeMode.light,
-            // home: SplashScreen(),
-            home: DonationCycleScreen(),
+            home: SplashScreen(),
+            // home: DonationCycleScreen(),
           );
         },
       ),

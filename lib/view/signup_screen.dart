@@ -230,7 +230,7 @@ class SignupScreen extends StatelessWidget {
 
                       child: ElevatedButton(
                         onPressed: () {
-                          Get.off(() => RoleSelectionScreen());
+                          Get.to(() => RoleSelectionScreen());
                           controller.signup();
                         },
 
