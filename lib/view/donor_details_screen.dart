@@ -205,7 +205,7 @@ class DonorDetailsScreen extends StatelessWidget {
                       child: OutlinedButton(
                         onPressed: () {
                           controller.openChat(name);
-                          Get.off(() => ChatScreen());
+                          Get.to(() => ChatScreen());
                         },
 
                         style: OutlinedButton.styleFrom(
@@ -239,7 +239,7 @@ class DonorDetailsScreen extends StatelessWidget {
                       child: OutlinedButton(
                         onPressed: () {
                           controller.viewLocation();
-                          Get.off(() => RequestTrackingScreen());
+                          Get.to(() => RequestTrackingScreen());
                         },
 
                         style: OutlinedButton.styleFrom(

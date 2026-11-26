@@ -56,6 +56,18 @@ class FindDonorsController extends GetxController {
       'donations': '—',
       'verified': 'unknown',
     },
+
+    {
+      'name': 'Usman Ahmed',
+      'group': 'B-',
+      'km': '3.0',
+      'city': 'Lahore',
+      'status': 'Busy',
+      'image': 'assets/find donor/avatar-usman.png',
+      'portrait': 'assets/donor details/portrait-usman.png',
+      'donations': '3',
+      'verified': 'true',
+    },
   ];
 
   // 8. Search and filters

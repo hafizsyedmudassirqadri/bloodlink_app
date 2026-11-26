@@ -89,6 +89,7 @@ class RequestTrackingScreen extends StatelessWidget {
 
                           Expanded(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Request Created',
@@ -142,6 +143,7 @@ class RequestTrackingScreen extends StatelessWidget {
 
                           Expanded(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Donor Accepted',
@@ -194,6 +196,7 @@ class RequestTrackingScreen extends StatelessWidget {
 
                           Expanded(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'In Progress',
@@ -227,13 +230,12 @@ class RequestTrackingScreen extends StatelessWidget {
                                 height: Responsive.w(context, 36),
                                 width: Responsive.w(context, 36),
                                 decoration: BoxDecoration(
-                                  color: AppColors.success,
+                                  color: theme.scaffoldBackgroundColor,
                                   shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                  size: Responsive.sp(context, 22),
+                                  border: Border.all(
+                                    color: theme.colorScheme.onSurface,
+                                    width: 1.7,
+                                  ),
                                 ),
                               ),
 
@@ -248,6 +250,7 @@ class RequestTrackingScreen extends StatelessWidget {
 
                           Expanded(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Completed',
@@ -272,7 +275,41 @@ class RequestTrackingScreen extends StatelessWidget {
                 ),
               ),
 
-              
+              GestureDetector(
+                onTap: () {
+                  debugPrint('Mark as Completed tapped');
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: Responsive.h(context, 54),
+
+                  decoration: BoxDecoration(
+                    color: AppColors.success,
+                    borderRadius: BorderRadius.circular(
+                      Responsive.w(context, 12),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.check,
+                        color: Colors.white,
+                        size: Responsive.sp(context, 22),
+                      ),
+                      SizedBox(width: Responsive.w(context, 8)),
+                      Text(
+                        "Mark as Completed",
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

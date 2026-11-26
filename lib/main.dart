@@ -1,3 +1,4 @@
+import 'package:bloodlink/view/donation_cycle_screen.dart';
 import 'package:bloodlink/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,8 @@ class BloodLinkApp extends StatelessWidget {
             theme: AppTheme.lightTheme(context),
             darkTheme: AppTheme.darkTheme(context),
             themeMode: ThemeMode.light,
-            home: SplashScreen(),
+            // home: SplashScreen(),
+            home: DonationCycleScreen(),
           );
         },
       ),
